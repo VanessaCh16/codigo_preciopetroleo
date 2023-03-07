@@ -1,0 +1,27 @@
+# Universidad Central del Ecuador	
+# Carrera de Petróleos
+# Materia: Facilidades de Producción
+# Integrantes: Vanessa Chamorro, Olga Rumiguano
+
+# Tendencia del petróleo en los últimos diez años (2012-2021)
+
+# librerias
+import pandas as pd
+import pymannkendall as mk
+
+# Importar datos
+cost = pd.read_csv('Datos históricos Futuros petróleo crudo WTI.csv',parse_dates=['Fecha'],index_col='Fecha')
+
+# Gráfica
+cost.plot()
+
+# Tedencia
+result = mk.original_test(cost,alpha=0.05)
+names = ["Tendencia","Presencia de tendencia","p-valor","Estadística de prueba","Tau Kendall","Puntaje de Kendall","Varianza S","Intercepto"]
+
+# Imprimir resultado de la prueba
+print("Tendencia del precio del petróleo 2012-2021")
+for i,j in zip(names,result):
+    print(i,":",j)
+
+
